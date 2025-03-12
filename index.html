@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Consumo de Água</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+        
+        .btn {
+            background-color: #007BFF;
+            border: none;
+            border-radius: 3px;
+            height: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="caixa_principal">
+        <h1>Controle de Água</h1>
+        <ul class="checklist">
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 1 Garrafa (500ml)
+                </label>
+            </li>
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 2 Garrafa (500ml)
+                </label>
+            </li>
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 3 Garrafa (500ml)
+                </label>
+            </li>
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 4 Garrafa (500ml)
+                </label>
+            </li>
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 5 Garrafa (500ml)
+                </label>
+            </li>
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 6 Garrafa (500ml)
+                </label>
+            </li>
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 7 Garrafa (500ml)
+                </label>
+            </li>
+            <li class="checklist-item">
+                <label>
+                    <input class="item" type="checkbox"> 8 Garrafa (500ml)
+                </label>
+            </li>
+        </ul>
+        <div class="footer">
+            <p>Meta: 8 Garrafas por dia</p>
+        </div>
+        <button class="btn" onclick="verificacao()">Concluído</button><br><br>
+        <h3 id="mensagem"></h3>
+    </div>
+    <script>
+    function verificacao() {
+      
+        const garrafas = document.querySelectorAll(".item");
+        let count = 0;
+
+        garrafas.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                count++;
+            }
+        });
+
+        const mensagem = document.getElementById("mensagem");
+        if (count === 0) {
+            mensagem.textContent = "Nenhuma garrafa marcada";
+        } else if (count === 8) {
+            mensagem.textContent = "Parabéns! você bateu a meta.";
+            esvaziarCheckboxes(); // Chama a função para desmarcar os checkboxes
+        } else {
+            mensagem.textContent = count + " garrafa(s) marcada(s)";
+        }
+    }
+
+    function esvaziarCheckboxes() {
+        const checkboxes = document.querySelectorAll(".item");
+        
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false; // Desmarca o checkbox
+        });
+    }
+</script>
+</body>
+</html>
